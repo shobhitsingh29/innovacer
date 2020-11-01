@@ -3,9 +3,6 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Links from "./Links";
 
-const Container = styled.div.attrs({
-  className: "container",
-})``;
 
 const Nav = styled.nav.attrs({
   className: "navbar navbar-expand-lg navbar-dark bg-dark",
@@ -21,16 +18,16 @@ const Header = styled.header`
 
 const NavBar = () => {
   return (
-    <Container>
+    <React.Fragment>
       <Header>
-        <Link to="/" className="navbar-brand">
-          Patient App
+        <Link to="/patients/list" className="navbar-brand">
+          Patients App
         </Link>
       </Header>
       <Nav>
         <Links />
       </Nav>
-    </Container>
+    </React.Fragment>
   );
 };
 

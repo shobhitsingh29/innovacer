@@ -49,6 +49,16 @@ app.post("/upload", upload.single("file"), (req, res, next) => {
 });
 app.use("/api", patientRouter);
 
+if (['production'].includes(process.env.NODE_ENV)) {
+  app.use(express.static('../client/build'));
+
+
+  app.get('*', (req, res) => {
+    res.sendFile(
+        path.join(path.resolve() , '..','client/build/index.html'))
+})
+}
+
 app.listen(apiPort, () => {
   console.log(`Server running on port ${apiPort}`);
 });

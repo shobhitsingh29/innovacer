@@ -5,6 +5,7 @@ export const api = axios.create({
 });
 
 export const insertPatient = (payload) => api.post(`/patient`, payload);
+export const uploadCsv = (payload) => api.post(`/uploadCsv`, payload);
 export const getAllPatients = () => api.get(`/patients`);
 export const updatePatientById = (id, payload) =>
   api.put(`/patient/${id}`, payload);
@@ -17,6 +18,7 @@ const apis = {
   updatePatientById,
   deletePatientById,
   getPatientById,
+  uploadCsv,
 };
 
 export default apis;
