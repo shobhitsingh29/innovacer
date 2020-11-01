@@ -3,12 +3,12 @@ import multer from "multer";
 
 import {
   createPatient,
-  createPatients,
   deletePatient,
   getPatientById,
   getPatients,
   updatePatient,
   upload,
+  uploadCsv,
 } from "../controllers/patient-ctrl.js";
 import path from "path";
 export const router = express.Router();
@@ -36,8 +36,8 @@ router.post("api/upload", ()=>{
   debugger;
   uploa.single("file")
 },upload);
+router.post("/uploadcsv", uploadCsv);
 router.post("/patient", createPatient);
-router.post("/patients", createPatients);
 router.put("/patient/:id", updatePatient);
 router.delete("/patient/:id", deletePatient);
 router.get("/patient/:id", getPatientById);

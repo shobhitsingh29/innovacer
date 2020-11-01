@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 mongoose
-    .connect("mongodb://127.0.0.1:27017/cinema", { useNewUrlParser: true })
+    .connect("mongodb+srv://root:root@cluster0.qh7s0.mongodb.net/cinema?retryWrites=true&w=majority", { useNewUrlParser: true })
     .catch((e) => {
         console.error("Connection error", e.message);
     });

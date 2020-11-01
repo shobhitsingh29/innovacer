@@ -20,6 +20,10 @@ const Links = () => {
       <Collapse>
         <List>
           <Item>
+            <Link to="/patients" className="nav-link">
+              Bulk Upload Patients
+            </Link>
+          </Item><Item>
             <Link to="/patients/create" className="nav-link">
               Create Patient
             </Link>

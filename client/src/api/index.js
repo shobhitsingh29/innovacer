@@ -1,10 +1,10 @@
 import axios from "axios";
-
 export const api = axios.create({
-  baseURL: "http://localhost:4000/api",
+  baseURL: 'https://peaceful-plains-77945.herokuapp.com/api',
 });
 
 export const insertPatient = (payload) => api.post(`/patient`, payload);
+export const uploadCsv = (payload) => api.post(`/uploadCsv`, payload);
 export const getAllPatients = () => api.get(`/patients`);
 export const updatePatientById = (id, payload) =>
   api.put(`/patient/${id}`, payload);
@@ -17,6 +17,7 @@ const apis = {
   updatePatientById,
   deletePatientById,
   getPatientById,
+  uploadCsv,
 };
 
 export default apis;

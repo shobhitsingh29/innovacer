@@ -5,9 +5,8 @@ import { db } from "./db/index.js";
 import { router as patientRouter } from "./routes/patient-router.js";
 import path from "path";
 import multer from "multer";
-
+console.log("*****************************");
 const app = express();
-const apiPort = 4000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
@@ -48,7 +47,25 @@ app.post("/upload", upload.single("file"), (req, res, next) => {
   }
 });
 app.use("/api", patientRouter);
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next()
+});
 
-app.listen(apiPort, () => {
-  console.log(`Server running on port ${apiPort}`);
+if (['production'].includes(process.env.NODE_ENV)) {
+
+  app.use(express.static('client/build'));
+
+  app.get('*', (req, res,next) => {
+    if (!req.path.includes('api'))
+      res.sendFile(
+          path.join(path.resolve() ,'client/build/index.html'));
+    else next();
+
+})
+}
+
+app.listen(process.env.PORT || 4000 ,function(){
+  console.log("up and running on port "+process.env.PORT);
 });

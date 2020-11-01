@@ -1,7 +1,7 @@
 {
   "name": "client",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.0.1",
+  "homepage": "https://peaceful-plains-77945.herokuapp.com/",
   "dependencies": {
     "@innovaccer/design-system": "^1.3.1-0",
     "@testing-library/jest-dom": "^5.11.4",

@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
+  "homepage": "https://peaceful-plains-77945.herokuapp.com/",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "npx nodemon ./index.js"
+    "server": "npx nodemon ./index.js",
+    "prod": "NODE_ENV=production node index.js"
   },
   "author": "shobhitsingh29@gmail.com",
   "license": "ISC",
@@ -14,8 +16,9 @@
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "csvtojson": "^2.0.10",
-    "fast-csv": "^4.3.3",
     "express": "^4.17.1",
+    "fast-csv": "^4.3.3",
+    "mongodb": "3.6.2",
     "mongoose": "^5.10.11",
     "multer": "1.4.2"
   }

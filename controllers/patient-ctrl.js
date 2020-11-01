@@ -1,6 +1,4 @@
 import Patient from "../models/patient-model.js";
-import fastcsv from "fast-csv";
-import fs from "fs";
 
 export const createPatient = async (req, res) => {
   const body = req.body;
@@ -10,7 +8,6 @@ export const createPatient = async (req, res) => {
       error: "You must provide a patient",
     });
   }
-
   const patient = new Patient(body);
 
   if (!patient) {
@@ -40,47 +37,39 @@ export const upload = async (req, res) => {
     console.error(error);
   }
 };
-export const createPatients = async (req, res) => {
-  let url = "mongodb://127.0.0.1:27017/patient";
-  let stream = fs.createReadStream("./uploads/myFile0.csv");
-  let csvData = [];
-  let csvStream = fastcsv
-    .parse()
-    .on("data", function (data) {
-      csvData.push({
-        id: data[0],
-        name: data[1],
-        description: data[2],
-        createdAt: data[3],
-      });
-    })
-    .on("end", function () {
-      // remove the first line: header
-      csvData.shift();
 
-      console.log("%%", csvData);
-
-      mongoose.connect(
-        url,
-        { useNewUrlParser: true, useUnifiedTopology: true },
-        (err, client) => {
-          if (err) throw err;
-
-          client
-            .db("patient")
-            .collection("category")
-            .insertMany(csvData, (err, res) => {
-              if (err) throw err;
-
-              console.log(`Inserted: ${res.insertedCount} rows`);
-              client.close();
-            });
-        }
-      );
+export const uploadCsv = async (req, res) => {
+  const body = req.body;
+  if (!body) {
+    return res.status(400).json({
+      success: false,
+      error: "You must provide a patient",
     });
+  }
 
-  stream.pipe(csvStream);
+const arr=Object.keys(body)[0].split('\n')
+
+  for (let i=1;i<arr.length;i++){
+    console.log(arr[i]);
+    var obj={};
+
+    var newArr=arr[i].split(',');
+    obj['name']=newArr[0];
+    obj['age']=newArr[1];
+    obj['gender']=newArr[2];
+    debugger;
+      const patient = new Patient(obj);
+    try {
+      await patient.save();
+    } catch (e) {
+      return res.status(400).json({
+        e,
+        message: "Patient not created!",
+      });
+    }
+  }
 };
+
 
 export const updatePatient = async (req, res) => {
   const body = req.body;

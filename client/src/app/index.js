@@ -6,6 +6,7 @@ import {
   PatientInsert,
   PatientsList,
   PatientUpdate,
+    PatientsInsertCsv,
   PatientsInfo,
 } from "../pages";
 
@@ -16,6 +17,7 @@ const App = () => {
     <Router>
       <NavBar />
       <Switch>
+        <Route path="/patients" exact component={PatientsInsertCsv} />
         <Route path="/patients/list" exact component={PatientsList} />
         <Route path="/patients/create" exact component={PatientInsert} />
         <Route path="/patients/update/:id" exact component={PatientUpdate} />
