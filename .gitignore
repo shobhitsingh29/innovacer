@@ -1,0 +1,12 @@
+# Created by .ignore support plugin (hsz.mobi)
+.idea/.gitignore
+.idea/inno.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+node_modules/
+server/node_modules/@sindresorhus/
+server/node_modules/@szmarczak/
+yarn.lock
+/server/node_modules/
+/server/node_modules/
