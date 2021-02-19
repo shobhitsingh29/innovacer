@@ -5,7 +5,6 @@ import { db } from "./db/index.js";
 import { router as patientRouter } from "./routes/patient-router.js";
 import path from "path";
 import multer from "multer";
-console.log("*****************************");
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -18,7 +17,6 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 app.get("/", (req, res) => {
   res.send("hello ji");
 });
-
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {

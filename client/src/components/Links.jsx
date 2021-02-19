@@ -30,7 +30,7 @@ const Links = () => {
           </Item>
           <Item>
             <Link to="/patients/list" className="nav-link">
-              List Patient
+              List Patients
             </Link>
           </Item>
         </List>
